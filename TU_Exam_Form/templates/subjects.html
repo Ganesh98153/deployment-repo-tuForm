@@ -1,0 +1,225 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Tu Registration form Templates">
+    <meta name="author" content="Ganesh_Tiwari">
+    <meta name="keywords" content="Tu Form">
+
+    <!-- Title Page-->
+    <title>TU Exam Form</title>
+
+    <!-- Icons font CSS-->
+   
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+   
+    <!-- Main CSS-->
+    <link href="{% static "../static/main.css" %}" rel="stylesheet" media="all">
+
+
+    <script>
+
+
+        function hide_form(){
+        
+            document.getElementById("form_id").style.display='none';
+
+        
+        }
+
+        function showform(){
+
+            document.getElementById("form_id").style.display='block';
+        
+        }
+
+
+    </script>
+    
+</head>
+
+<body onload="hide_form()">
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">TU Exam Form</h2>
+                </div>
+
+
+                <!-- This is Tribhuwan University block -->
+
+                <div class="card-heading">
+                    <h1 class="title"> Tribhuwan University </h1>
+                    <h2 class = "title"> Institute of Science & Technology </h2>
+
+                    <h2 class = "title"> Dean's Office, Kirtipur </h2>
+                </div>
+
+                <!-- This is end of the TU Block -->
+
+                <div class="card-body" >
+
+
+
+                        <div class="form-row m-b-55">
+                            <button class="btn btn--radius-2 btn--red" onclick="showform()">Add Subjects</button>
+                        </div>
+
+
+                        <div id ="form_id" class="form-row m-b-55">
+
+ 
+                        <form method="post" action="/addSubject/"> 
+                        {% csrf_token %}
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                Fill up the form to add new subject in a database.
+                            </div>
+                        </div>
+
+
+                        <div class="form-row m-b-55">
+                            <div class="name">Subject Name</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    {% render_field form.subject_name class="input--style-5"  type="text" placeholder="Subject" %}
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+
+                         <div class="form-row m-b-55">
+                            <div class="name">Course Code</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    {% render_field form.subject_code class="input--style-5" placeholder="CSC-101" %}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row m-b-55">
+                            <div class="name">Semester</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    {% render_field form.subject_semester class="form-control" %}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-row m-b-55">
+                            <div class="name">Subject Type:</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    {% render_field form.subject_type class="form-control" %}
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-row m-b-55">
+                            <button class="btn btn--radius-2 btn--red" type="submit">Confirm</button>
+                        </div>
+
+
+                        <div class="form-row m-b-55">
+                            <button class="btn btn--radius-2 btn--red" type="submit" onclick="hide_form()">Cancel</button>
+                             
+                        </div>
+
+
+
+
+                    </form>
+
+                        </div>
+
+
+
+
+                        
+
+                        <!-- Here is the list of subjects for confirmations -->
+
+
+                    <table class="table table-bordered table-dark">
+                      <thead>
+                        <tr>
+                          <th scope="col" width="10%">S.N.</th>
+                          <th scope="col" width="15%">Course Number</th>
+                          <th scope="col" width="40%">Subject </th>
+                          <th scope="col" width="35%">Type </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                    {% for s in subject %}
+                        <tr>
+                            
+
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td scope="row">{{ s.subject_code }}</td>
+                    <td scope="row">{{ s.subject_name }}</td>
+                    <td scope="row">{{ s.subject_type }}</td>
+                        </tr>
+
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                    <br>
+                                            
+
+
+
+
+
+                        <!-- It is the end of the subjects -->
+                    <br> <br> <br>
+
+                    <form action="/admin/" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Admin_Site</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
+
+</body>
+
+</html>
+<!-- end document-->
